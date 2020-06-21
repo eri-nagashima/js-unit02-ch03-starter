@@ -33,6 +33,10 @@ function getData() {
     成功ならpropertyDataをPromise.resolveで返します。
     失敗ならエラーメッセージをPromise.rejectで返します。
   */
+  // return fetchData().then((response) => {
+  //   if (response.status === 200) {
+  //   }
+  // });
 }
 
 function fetchData() {
@@ -40,11 +44,11 @@ function fetchData() {
   /* 
     fetchを使ってデータを取得します。
   */
-  fetch(url, {
+  return fetch(url, {
     method: 'GET',
   });
 }
-fetchData();
+fetchData(); //確認用
 
 {
   const button1 = document.getElementById('button1');
