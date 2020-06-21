@@ -1,4 +1,4 @@
-const endpoint = "http://localhost:3000"
+const endpoint = 'http://localhost:3000';
 
 function handleClick(e) {
   e.preventDefault();
@@ -16,15 +16,15 @@ function handleClick(e) {
           <p><b>一泊あたり: </b>${propertyData.priceInDollars}ドル</p>
           <p><b>ホスト: </b>${propertyData.host.firstName}</p>
         </div>
-      `
+      `;
     })
     .catch((e) => {
       mainEl.innerHTML = `
         <div className="property-info-wrapper">
           <p>${e.message}</p>
         </div>
-      `
-    })
+      `;
+    });
 }
 
 function getData() {
@@ -35,15 +35,18 @@ function getData() {
   */
 }
 
-
 function fetchData() {
-  const url = `${endpoint}/properties/1`
+  const url = `${endpoint}/properties/1`;
   /* 
     fetchを使ってデータを取得します。
   */
+  fetch(url, {
+    method: 'GET',
+  });
 }
+fetchData();
 
 {
   const button1 = document.getElementById('button1');
-  button1.addEventListener("click", handleClick);
+  button1.addEventListener('click', handleClick);
 }
