@@ -33,10 +33,14 @@ function getData() {
     成功ならpropertyDataをPromise.resolveで返します。
     失敗ならエラーメッセージをPromise.rejectで返します。
   */
-  // return fetchData().then((response) => {
-  //   if (response.status === 200) {
-  //   }
-  // });
+  return fetchData().then((response) => {
+    const json = response.json();
+    if (response.status === 200) {
+      return Promise.resolve(json);
+    } else {
+      return Promise.reject(json);
+    }
+  });
 }
 
 function fetchData() {
@@ -48,7 +52,6 @@ function fetchData() {
     method: 'GET',
   });
 }
-fetchData(); //確認用
 
 {
   const button1 = document.getElementById('button1');
