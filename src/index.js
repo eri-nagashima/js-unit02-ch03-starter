@@ -34,22 +34,28 @@ function getData() {
     失敗ならエラーメッセージをPromise.rejectで返します。
   */
   return fetchData().then((response) => {
-    const json = response.json();
+    const jsonData = response.json();
     if (response.status === 200) {
-      return Promise.resolve(json);
+      return Promise.resolve(jsonData);
     } else {
-      return Promise.reject(json);
+      return Promise.reject(jsonData);
     }
   });
 }
 
-function fetchData() {
-  const url = `${endpoint}/properties/1`;
+function fetchData(id = 2) {
+  const url = `${endpoint}/properties/${id}`;
   /* 
     fetchを使ってデータを取得します。
   */
   return fetch(url, {
     method: 'GET',
+    mode: 'cors',
+    cache: 'default',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
   });
 }
 
