@@ -35,15 +35,15 @@ function getData() {
   */
   return fetchData().then((response) => {
     const jsonData = response.json();
-    if (response.status === 200) {
-      return Promise.resolve(jsonData);
-    } else {
+    if (!response.status === 200) {
       return Promise.reject(jsonData);
+    } else {
+      return Promise.resolve(jsonData);
     }
   });
 }
 
-function fetchData(id = 2) {
+function fetchData(id = 1) {
   const url = `${endpoint}/properties/${id}`;
   /* 
     fetchを使ってデータを取得します。
