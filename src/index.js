@@ -34,17 +34,20 @@ function getData() {
     失敗ならエラーメッセージをPromise.rejectで返します。
   */
   return fetchData().then((response) => {
+    console.log(response); //確認用 statusは403になる
     const jsonData = response.json();
+    console.log(jsonData); //確認用 if文に抜けると思いきや、else文に抜けているため、Cannot read property 'propertyName' of undefinedと表示されてしまう（添付参照）
+
     if (!response.status === 200) {
       return Promise.reject(jsonData);
     } else {
-      return Promise.resolve(jsonData);
+      return Promise.resolve(jsonData); //こちらに抜けているため、エラー？
     }
   });
 }
 
 function fetchData(id = 1) {
-  const url = `${endpoint}/properties/${id}`;
+  const url = 'http://localhost:3000/properties/2'; //エラーメッセージ検証用URL
   /* 
     fetchを使ってデータを取得します。
   */
