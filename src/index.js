@@ -37,7 +37,7 @@ function getData() {
     const jsonData = response.json();
 
     if (response.status !== 200) {
-      jsonData.then((err) => {
+      return jsonData.then((err) => {
         return Promise.reject(err);
       });
     } else {
@@ -46,7 +46,7 @@ function getData() {
   });
 }
 
-function fetchData(id = 2) {
+function fetchData(id = 1) {
   const url = `${endpoint}/properties/${id}`;
   /* 
     fetchを使ってデータを取得します。
